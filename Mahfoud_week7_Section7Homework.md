@@ -155,9 +155,9 @@ ORDER BY  2 DESC
 
 4. In your own words, Briefly explain Primary Keys and Foreign Keys. 
 
-**Primary key** is unique indetifier for each row in a table, it only appears once in table.
+**Primary key** is unique identifier for each row in a table, it only appears once in table, it cannot contain NULL values
 
-**Foreign Key** is primary key tat used in diffrent table from the orginla table and can be repeated in the new table. 
+**Foreign Key** is primary key that is used in different table, and can be repeated in the new table(contain duplicate values).  
 
 #### Question 5
 
