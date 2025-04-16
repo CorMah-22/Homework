@@ -1,14 +1,8 @@
 # SECTION 07 HW 
-<br>
 
-## Directions 
-1. You will need to open up the SavvyCoders_SQL_EVtables.db for the first part of the HW.
-2. If you need to change databases you will be instructed to do so. 
-3. Please answer all of the questions in a markdown file. Here is the sample format: 
+### SavvyCoders_SQL_chargeDB.db database was set up  for this section for the first part of the HW.
 
 # Section 7.1 
-
-
 4. You can copy and paste this sample outline into a markdown and then add a new question block for each question within the section and when the new section comes, create a new section block. 
  
 
@@ -98,7 +92,7 @@ ORDER BY Usage DESC
 LIMIT 5;
 
 ```
-
+## Question 5
 5.  Using EVCharging, For the folks who charged longer than 0.5 hours, show the min and max of the charging time for each user. Your output columns should be `userid`, `minTime`, and `maxTime`. Order this result set by the last two columns respectively. 
 
 ```SQL
@@ -111,20 +105,9 @@ ORDER BY maxHrs, minHrs;
 
 ```
 
-# Before moving on with the rest of the questions please set up the new database
-1. in SQLlite close any open DB
-2. file----> Open Database
-3. Choose SavvyCoders_SQL_chargeDB.db from the resource repository from this section in the curriculum
-4. Make sure that you have 5 tables: 
-    - dimDay 
-    - dimFacility
-    - dimUser
-    - factCharge
-    - EVCharging
-
-
+### SavvyCoders_SQL_chargeDB.db database was set up  for this section
 # 7.3 HW Questions
-
+## Question 1
 1. Using EVCharging, Which day of the week has the highest average charging time? Round the answer to 2 decimal points.
 
 ```SQL
@@ -135,6 +118,7 @@ FROM EVCharging
 -- Tue
 
 ```
+## Question 2
 2. Using, EV charging, Find the total power consumed from charging EV's by each User. Return the `userId` and name the calculated column, `totalPower`. Round the answer to 2 deciaml points and list the out put in highest to lowest order. Limit the order to the top 15 users. 
 
 ```SQL
@@ -146,8 +130,31 @@ ORDER BY  totalPower DESC
 LIMIT 15
 
 ```
+## Question 3
+3. Using dimfacility and factCharge, write a query to find out which type of facility (GROUP BY) has the most amount of charging stations. Return `type Facility` and name the calculated column `numStation`. Order the result set from highest to lowest number of charging stations.
+```SQL
 
-3. Using dimfacility and factCharge, write a query to find out which type of facility (GROUP BY) has the most amount of charging stations. Return `type Facility` and name the calculated column `numStation`. Order the result set from highest to lowest number of charging stations.  
+SELECT b.typeFacility AS facilityType, COUNT(DISTINCT a.stationID) AS numStation
+FROM factCharge AS a
+INNER JOIN dimfacility AS b ON a.facilityID = b.FacilityKey
+GROUP BY b.typeFacility
+ORDER BY  2 DESC
+
+```
+## Question 4
 4. In your own words, Briefly explain Primary Keys and Foreign Keys. 
+Primary key is unique indetifier for each row in a table, it only appears once in table.
+Foreign Key is primary key tat used in diffrent table from the orginla table and can be repeated in the new table. 
+## Question 5
 5. Using EV Charging, For the folks who charged longer than one hour, show the min and max of the charging time for each user. Your output columns should be `userid`, `minTime`, and `maxTime`. Order this result set by the last two columns respectively. HINT: USE `HAVING`
+
+```SQL
+
+SELECT userid, MIN(chargeTimeHrs) AS minTime, MAX(chargeTimeHrs) AS maxTime
+FROM EVCharging
+GROUP BY userid
+HAVING  chargeTimeHrs > 1
+ORDER BY 2, 3
+
+```
 
