@@ -1,6 +1,5 @@
 # 8.2 SQL Data Cleaning Lab 
 <br>
-
  
 # Section 1
 
